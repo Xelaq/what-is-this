@@ -1,319 +1,116 @@
 <!DOCTYPE html>
 <html>
+
 <style>
-    .width-choice-sort{
-        width: 21%;
-        border: 1px solid black;
-        margin-bottom: 15px;  
-        margin-left: 42%;
-    }
 
-    textarea {
-        resize: none;
-    }
+table.iksweb{
+    border-collapse:collapse;
+    border-spacing:0;
 
-    .input {
-        display: inline-block;
-        margin-top: -30px;
-        margin-left: 5%;
-    }
+}
 
-    .output {
-        display: inline-block;
-        margin-top: 0px;
-        margin-left: 2%;
-    }
+table.iksweb {
+    border: 3px solid #000000; height:30px ;
+    margin-left: 30%;
+}
 
-    .generator {
-        margin-top: -9%;
-        margin-left: 5%;
-    }
+td {
+    text-align:center; border: 1px solid #595959; width:40px; 
+}
 
-    .counter {
-        margin-top: 20px;
-        margin-left: 20%;
-    }
+tr {
+    height:40px;
+}
+
+th {
+  border-bottom: 2px solid #000000;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
+th {
+  border-bottom: 2px solid #000000;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
 </style>
 
 <body>
-    <script>
-        function generator_num(){
-            let n = Number(document.getElementById("generator").value);
 
-            if (n <= 0){
-                document.getElementById("output_sort").value = "Введите корректное число генератора чисел!";
-            
-                return false;
-            }
 
-            let min = 1; // Минимальное число генерации
-            let max = 100; // Максимальное число генерации
+<table class="iksweb">
+    <tr height="30px">
+        <th><font face="Arial"><strong>ПН</strong></font></th>
+        <th><font face="Arial"><strong>ВТ</strong></font></th>
+        <th><font face="Arial"><strong>СР</strong></font></th>
+        <th><font face="Arial"><strong>ЧТ</strong></font></th>
+        <th><font face="Arial"><strong>ПТ</strong></font></th>
+        <th><font face="Arial"><strong>СУБ</strong></font></th>
+        <th><font face="Arial"><strong>ВСК</strong></font></th>
+    </tr>
 
-            let massive_numbers = new Array(n).fill(null).map(() => Math.floor(Math.random() * (max - min) + min))
-            
-            document.getElementById("input_sort").value = massive_numbers;
-        }
+    <tr>
+        <td BGCOLOR="#cfcfcf"><font face="Arial"><strong>28</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>1</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>2</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>3</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>4</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>5</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>6</strong></font> </td>
+    </tr>
 
-        function clean_button(){
-            document.getElementById("input_sort").value = "";
-        }
-
-        // тяжело.....
-
-        function get_sort(){
-            let numbers = document.getElementById("input_sort").value.split(',').map(Number);;  
-            
-            let type_sort = document.querySelector('input[name="sortirov"]:checked').value;     
-
-            let arr = numbers.filter(function(number) {
-                let value = number
-                return (value instanceof Number||typeof value === 'number') && !isNaN(value);
-            });
-
-            let compare = 0;
-            let replace = 0;
-
-            switch(type_sort) {
-                case 'b_sort':
-
-                    for (let j = arr.length - 1; j > 0; j--) {
-                        for (let i = 0; i < j; i++) {
-                            compare++
-                            if (arr[i] > arr[i + 1]) {
-                                replace++
-                                let temp = arr[i];
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = temp;
-                            }
-                        }
-                    }
-
-                break;
-
-                case 'q_sort':    
-
-                    function quickSort(arr) {
-                        if (arr.length < 2) return arr;
-                            let pivot = arr[0];
-                            const left = [];
-                            const right = [];
-                            
-                        for (let i = 1; i < arr.length; i++) {
-                            compare++
-                            if (pivot > arr[i]) {
-                                replace++
-                                left.push(arr[i]);
-                            } else {
-                                replace++
-                                right.push(arr[i]);
-                            }
-                        }
-                        return quickSort(left).concat(pivot, quickSort(right));
-                    }
-
-                    arr = quickSort(arr)
-
-                break;
-
-                case 's_sort': 
-
-                    for (let i = 0, l = arr.length, k = l - 1; i < k; i++) {
-                        let indexMin = i;
-                        for (let j = i + 1; j < l; j++) {
-                            compare++
-                            if (arr[indexMin] > arr[j]) {
-                                replace++
-                                indexMin = j;
-                            }
-                        }
-                        if (indexMin !== i) {
-                            [arr[i], arr[indexMin]] = [arr[indexMin], arr[i]];
-                        }
-                    }
-                
-                break;
-
-                case 'front_sort':
-
-                    let temp;
-
-                    for (let i = 1; i < arr.length; i++) {
-                        let j = i;
-                        temp = arr[i];
-                        compare++
-                        while (j > 0 && (arr[j - 1] > temp)) {
-                            replace++
-                            arr[j] = arr[j - 1];
-                            j--;
-                        }
-                        arr[j] = temp;
-                    }
-
-                break;
-
-                case 'shella_sort':
-
-                    let gap = Math.floor(arr.length / 2);
-                        
-                    while (gap >= 1) {
-                        for (let i = gap; i < arr.length; i++) {
-                            const current = arr[i];
-                            let j = i;
-                            compare++
-                            while (j > 0 && arr[j - gap] > current) {
-                                replace++
-                                arr[j] = arr[j - gap];
-                                j -= gap;
-                            }
-                            arr[j] = current;
-                        }
-                        gap = Math.floor(gap / 2);
-                    }
-                        
-                break;
-
-                case 'pyramid_sort':
-
-                    const heapify = (arr, length, i) => {
-
-                        let largest = i
-                        const left = i * 2 + 1
-                        const right = left + 1
-                        compare++
-                        if (left < length && arr[left] > arr[largest]) {
-                            largest = left
-                        }
-
-                        if (right < length && arr[right] > arr[largest]) {
-                            largest = right
-                        }
-
-                        if (largest !== i) {
-                            replace++
-                            [arr[i], arr[largest]] = [arr[largest], arr[i]]
-                            heapify(arr, length, largest)
-                        }
-
-                        return arr
-                    }
-
-                    const heapSort = arr => {
-                        const length = arr.length
-                        let i = Math.floor(length / 2 - 1)
-                        let k = length - 1
-                        compare++
-                        while (i >= 0) {
-                            heapify(arr, length, i)
-                            i--
-                        }
-
-                        while (k >= 0) {
-                            replace++
-                            [arr[0], arr[k]] = [arr[k], arr[0]]
-                            heapify(arr, k, 0)
-                            k--
-                        }
-
-                        return arr
-                    }
-
-                    sortedArr = heapSort(arr);
-
-                break;
-
-                case 'coctail_sort':
-
-                    let left = 0;
-                    let right = arr.length - 1;
-
-                    while (left < right) {
-                        for (let i = left; i < right; i++) {
-                            compare++
-                            if (arr[i] > arr[i + 1]) {
-                                replace++
-                                let swap = arr[i];
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = swap;
-                            }
-                        }
-                        right--;
-                        for (let i = right; i > left; i--) {
-                            compare++
-                            if (arr[i] < arr[i - 1]) {
-                                replace++
-                                let swap = arr[i];
-                                arr[i] = arr[i - 1];
-                                arr[i - 1] = swap;
-                            }
-                        }
-                        left++;
-                    }
-
-                break;
-
-                default: 
-
-                    for (let j = arr.length - 1; j > 0; j--) {
-                        for (let i = 0; i < j; i++) {
-                            compare++
-                            if (arr[i] > arr[i + 1]) {
-                                replace++
-                                let temp = arr[i];
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = temp;
-                            }
-                        }
-                    }
-
-                break;
-            }
-
-            document.getElementById("output_sort").value = arr;  
-            document.getElementById("counter_compare").innerHTML = "Количество сравнений: "+compare; 
-            document.getElementById("counter_replace").innerHTML = "Количество перестановок:"+replace;  
-
-        }
+    <tr>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>7</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>8</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>9</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>10</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>11</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>12</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>13</strong></font> </td>
+    </tr>
     
-    </script>
+    <tr>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>14</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>15</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>16</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>17</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>18</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>19</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>20</strong></font> </td>
+    </tr>
 
-    <fieldset class="width-choice-sort"> <legend><b>Метод сортировки</b></legend>
-        <label>
-            <input type="radio" id="b_sortirov" name="sortirov" value="b_sort" checked> Bubble sort<br>
-            <input type="radio" id="q_sortirov" name="sortirov" value="q_sort"> Quick sort<br>
-            <input type="radio" id="s_sortirov" name="sortirov" value="s_sort"> Selection sort<br>
-            <input type="radio" id="s_sortirov" name="sortirov" value="front_sort"> Сортировка прямого включения<br>
-            <input type="radio" id="s_sortirov" name="sortirov" value="shella_sort"> Сортировка шелла<br>
-            <input type="radio" id="s_sortirov" name="sortirov" value="pyramid_sort"> Сортировка пирамидальная<br>
-            <input type="radio" id="s_sortirov" name="sortirov" value="coctail_sort"> Сортировка шейкер
-        </label>
-    </fieldset>
+    <tr>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>21</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>22</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>23</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>24</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>25</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>26</strong></font> </td>
+        <td BGCOLOR="#fffec2"><font face="Arial"><strong>27</strong></font> </td>
+    </tr>
 
-    <div class="generator"> 
-        <p>Генератор рандомных чисел<Br>
-            <input type="number" min="0" id="generator" placeholder="Количество чисел">
-        <p>
-        <input type="reset" value="Сгенерировать!" onclick="generator_num()"></p>
-    </div>
+    <tr>
+        <th BGCOLOR="#fffec2"><font face="Arial"><strong>28</strong></font> </th>
+        <th BGCOLOR="#fffec2"><font face="Arial"><strong>29</strong></font> </th>
+        <th BGCOLOR="#fffec2"><font face="Arial"><strong>30</strong></font> </th>
+        <th BGCOLOR="#fffec2"><font face="Arial"><strong>31</strong></font> </th>
+        <th BGCOLOR="#fffd96"><font face="Arial"><strong>1</strong></font> </th>
+        <th BGCOLOR="#fffd96"><font face="Arial"><strong>2</strong></font> </th>
+        <th BGCOLOR="#fffd96"><font face="Arial"><strong>3</strong></font> </th>
+    </tr>
 
-    <div class="input">  
-        <p>Ввод<Br>
-            <textarea id="input_sort" cols="40" rows="6"></textarea></p>
-        <p>
-        <input type="reset" id="input_clean" value="Очистить" onclick="clean_button()"></p>
-    </div>
+    <tr>
+        <td border-top="4px" BGCOLOR="#fffec2" colspan="7"> <font face="Arial"><strong>МАРТ</strong></font> </td> 
+    </tr>
+</table>
 
-    <div class="output">        
-        <p>Вывод<Br>
-            <textarea id="output_sort" placeholder="кчеу" name="comment" cols="40" rows="6" disabled></textarea></p>
-        <p>
-        <input type="reset" value="Сортировать" onclick="get_sort()"></p>
-    </div><br>
 
-    <div class="counter">   
-        <p id="counter_compare">Количество сравнений: 0</p>
-        <p id="counter_replace">Количество перестановок: 0</p> 
-    </div>
+
 
 </body>
+
 </html>
 
