@@ -3,39 +3,52 @@
 
 <style>
 
-table.iksweb1 {
+table.halp_m1 {
+    border-collapse:collapse;
+    border-spacing:0;
+    border: 3px solid #000000;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+table.halp_m2 {
+    border-collapse:collapse;
+    border-spacing:0;
+    border: 3px solid #000000;
+    margin-top: 5px;
+    text-align: center;
+    float: top;
+}
+
+table.iksweb1, table.iksweb2, table.iksweb3 {
     border-collapse:collapse;
     border-spacing:0;
     border: 3px solid #000000; height:30px ;
-    margin-left: 0%;
+}
+
+table.iksweb1, table.iksweb2 {
     float: left;
 }
 
 table.iksweb2 {
-    border-collapse:collapse;
-    border-spacing:0;
-    border: 3px solid #000000; height:30px ;
-    float: left;
     margin-left: 2px;
+
 }
 
 table.iksweb3 {
-    border-collapse:collapse;
-    border-spacing:0;
-    border: 3px solid #000000; height:30px ;
-    float: left;
-    margin-left: 2px;
+    margin-left: 616px;
 }
 
-td {
+
+table.iksweb1 td, table.iksweb2 td, table.iksweb3 td {
     text-align:center; border: 1px solid #000000; width:40px; 
 }
 
-tr {
+table.iksweb1 tr, table.iksweb2 tr, table.iksweb3 tr {
     height:40px;
 }
 
-th {
+table.iksweb1 th, table.iksweb2 th, table.iksweb3 th {
   border-bottom: 2px solid #000000;
   border-left: 1px solid #000000;
   border-right: 1px solid #000000;
@@ -64,9 +77,16 @@ th {
 
 <body>
 
+<table class="halp_m1">
+        <tr height="50px">
+            <td width="914px"><font face="Arial"><strong>Расписание ШКТ (2022)</strong></font></td>
+        </tr>
+</table>
+
+
 
 <table class="iksweb1">
-    <tr height="30px">
+    <tr>
         <th><font face="Arial"><strong>ПН</strong></font></th>
         <th><font face="Arial"><strong>ВТ</strong></font></th>
         <th><font face="Arial"><strong>СР</strong></font></th>
@@ -158,7 +178,7 @@ th {
 </table>
 
 <table class="iksweb2">
-    <tr height="30px">
+    <tr>
         <th><font face="Arial"><strong>ПН</strong></font></th>
         <th><font face="Arial"><strong>ВТ</strong></font></th>
         <th><font face="Arial"><strong>СР</strong></font></th>
@@ -265,12 +285,12 @@ th {
     </tr>
 
     <tr>
-        <td border-top="4px" BGCOLOR="#fffd96" colspan="7"> <font face="Arial"><strong>Апрель</strong></font> </td> 
+        <td border-top="4px" BGCOLOR="#fffd96" colspan="7"> <font face="Arial"><strong>АПРЕЛЬ</strong></font> </td> 
     </tr>
 </table>
 
 <table class="iksweb3">
-    <tr height="30px">
+    <tr>
         <th><font face="Arial"><strong>ПН</strong></font></th>
         <th><font face="Arial"><strong>ВТ</strong></font></th>
         <th><font face="Arial"><strong>СР</strong></font></th>
@@ -350,6 +370,20 @@ th {
         <td border-top="4px" BGCOLOR="#fffc5c" colspan="7"> <font face="Arial"><strong>МАЙ</strong></font> </td> 
     </tr>
 </table>
+
+<table class="halp_m2">
+
+    <tr height="50px">
+        <td width="914px"><font face="Arial">P.S: Просто наведись/нажми на дату, выделенную бордовым цветом! </font></td>
+    </tr>
+
+</table>
+
+<div class= "pepe_png">
+    <img src="16473728861690.png">
+</div>
+
+
 
 </body>
 
