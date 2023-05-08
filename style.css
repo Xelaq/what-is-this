@@ -10,12 +10,25 @@ body{
     font-family: 'Cairo', sans-serif;
 }
 
-
 .context {
     width: 100%;
     position: absolute;
     top:50vh;
-    
+    text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+}
+
+.image_rotate {
+    margin-top: 10%;
+    animation: rotate_img 25s linear infinite;
+} 
+
+.word {
+  position: absolute;
+  margin-left: 1%;
+  margin-top: 7%;
+  color: white;
+  font-family: 'Cairo', sans-serif;
+  /*text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;*/
 }
 
 .context h1{
@@ -130,20 +143,28 @@ body{
     animation-duration: 11s;
 }
 
+@keyframes rotate_img {
+    0%{
+        transform: rotate(0deg);
+    }
 
-
-
+    100%{
+        transform: rotate(360deg);
+    }
+}
 
 @keyframes animate {
 
     0%{
+        overflow: hidden;
         transform: scale(1) translateY(0) rotate(0deg);
         opacity: 1;
         border-radius: 0;
     }
 
     100%{
-        transform: scale(0.5) translateY(-2000px) rotate(720deg);
+        overflow: hidden;
+        transform: scale(0.5) translateY(-2500px) rotate(720deg);
         opacity: 0;
         border-radius: 50%;
     }
